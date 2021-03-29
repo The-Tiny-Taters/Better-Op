@@ -55,12 +55,19 @@ class EditOpCommand {
                 return@forEach
             }
 
+            val targetPlayer = manager.getPlayer(target.id)
+
+            if (targetPlayer != null && !targetPlayer.hasPermissionLevel(level)) {
+                context.source.sendError(
+                    LiteralText("§cCannot set players to a permission level higher than your own")
+                )
+                return@forEach
+            }
+
             manager.removeFromOperators(target)
             (manager as PlayerManagerAccessor).ops.add(
                 OperatorEntry(target, level, bypass) // it's that easy. it's already part of the game.
             )
-
-            val targetPlayer = manager.getPlayer(target.id)
 
             if (targetPlayer != null) {
                 manager.sendCommandTree(targetPlayer)
