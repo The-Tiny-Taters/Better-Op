@@ -10,6 +10,7 @@ import net.minecraft.text.LiteralText
 import the_tiny_taters.better_op.Context
 import the_tiny_taters.better_op.Node
 import the_tiny_taters.better_op.mixin.PlayerManagerAccessor
+import the_tiny_taters.better_op.mixin.ServerCommandSourceAccessor
 
 class EditOpCommand {
     fun register(): Node {
@@ -57,9 +58,15 @@ class EditOpCommand {
 
             val targetPlayer = manager.getPlayer(target.id)
 
-            if (targetPlayer != null && !targetPlayer.hasPermissionLevel(level)) {
+            if (!context.source.hasPermissionLevel(level)) {
                 context.source.sendError(
                     LiteralText("§cCannot set players to a permission level higher than your own")
+                )
+                return@forEach
+
+            } else if ((targetPlayer as ServerCommandSourceAccessor).level > (context.source as ServerCommandSourceAccessor).level) {
+                context.source.sendError(
+                    LiteralText("§cCannot edit players that have a higher permission level than your own")
                 )
                 return@forEach
             }
@@ -69,9 +76,7 @@ class EditOpCommand {
                 OperatorEntry(target, level, bypass) // it's that easy. it's already part of the game.
             )
 
-            if (targetPlayer != null) {
-                manager.sendCommandTree(targetPlayer)
-            }
+            manager.sendCommandTree(targetPlayer)
 
             val canBypass = if (!bypass) { "not" } else { "" }
             context.source.sendFeedback(
