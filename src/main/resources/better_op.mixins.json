@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "the_tiny_taters.better_op.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "PlayerManagerAccessor"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

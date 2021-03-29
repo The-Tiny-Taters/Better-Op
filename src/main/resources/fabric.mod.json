@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "better-op",
+  "version": "${version}",
+  "name": "Better Op",
+  "description": "Adds arguments to /op and allows for editing op levels/settings with /editop",
+  "authors": [
+    "SpaceClouds42"
+  ],
+  "contact": {
+    "homepage": "",
+    "sources": "",
+    "issues": ""
+  },
+  "license": "LGPL",
+  "icon": "assets/better_op/icon.png",
+  "environment": "server",
+  "entrypoints": {
+    "main": [
+      {
+        "value": "the_tiny_taters.better_op.Common::INSTANCE"
+      }
+    ]
+  },
+  "mixins": [
+    "better_op.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.7.1",
+    "fabric": "*",
+    "fabric-language-kotlin": ">=1.5.0+kotlin.1.4.31",
+    "minecraft": "^1.16.5"
+  }
+}
