@@ -64,7 +64,7 @@ class EditOpCommand {
                 )
                 return@forEach
 
-            } else if ((targetPlayer as ServerCommandSourceAccessor).level > (context.source as ServerCommandSourceAccessor).level) {
+            } else if (targetPlayer != null && (targetPlayer as ServerCommandSourceAccessor).level > (context.source as ServerCommandSourceAccessor).level) {
                 context.source.sendError(
                     LiteralText("§cCannot edit players that have a higher permission level than your own")
                 )
@@ -76,7 +76,9 @@ class EditOpCommand {
                 OperatorEntry(target, level, bypass) // it's that easy. it's already part of the game.
             )
 
-            manager.sendCommandTree(targetPlayer)
+            if (targetPlayer != null) {
+                manager.sendCommandTree(targetPlayer)
+            }
 
             val canBypass = if (!bypass) { "not" } else { "" }
             context.source.sendFeedback(
