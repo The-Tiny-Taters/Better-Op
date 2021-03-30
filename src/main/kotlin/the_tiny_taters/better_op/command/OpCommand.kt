@@ -20,7 +20,7 @@ class OpCommand {
                 it.hasPermissionLevel(3)
             }
 
-            custom("targets", GameProfileArgumentType.gameProfile()) {
+            gameProfile("targets") {
                 integer("level", min=1, max=4) {
                     executes {
                         betterOpCommand(
