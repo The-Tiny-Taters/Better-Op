@@ -8,9 +8,9 @@
     "SpaceClouds42"
   ],
   "contact": {
-    "homepage": "",
-    "sources": "",
-    "issues": ""
+    "homepage": "https://modrinth.com/mod/better-op",
+    "sources": "https://github.com/The-Tiny-Taters/Better-Op",
+    "issues": "https://github.com/The-Tiny-Taters/Better-Op/issues"
   },
   "license": "LGPL",
   "icon": "assets/better_op/icon.png",
